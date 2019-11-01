@@ -48,3 +48,11 @@ services:
     command: ./node_modules/.bin/webpack-dev-server --mode development --open --config config/webpack.config.js --host 0.0.0.0 --watch-aggregate-timeout 500 --watch-poll 1000
     ports:
       - 8080:8080
+
+  app_wine_front_tests:
+    build:
+      context: ./app_wine_front
+    volumes:
+      - node_modules_front:/app/node_modules
+      - ./app_wine_front:/app
+    command: ./node_modules/.bin/ava
