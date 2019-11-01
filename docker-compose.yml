@@ -11,3 +11,11 @@ services:
       - node_modules_server:/app/node_modules
       - ./app_wine_server:/app
     command: node_modules/nodemon/bin/nodemon.js -w /app /app/src/index.js
+
+  app_wine_server_lint:
+    build:
+      context: ./app_wine_server
+    volumes:
+      - node_modules_server:/app/node_modules
+      - ./app_wine_server:/app
+    command: ./node_modules/.bin/eslint .
