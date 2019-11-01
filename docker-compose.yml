@@ -31,6 +31,14 @@ services:
       - ./app_wine_server:/app
     command: ./node_modules/.bin/ava
 
+  app_wine_front_lint:
+    build:
+      context: ./app_wine_front
+    volumes:
+      - node_modules_front:/app/node_modules
+      - ./app_wine_front:/app
+    command: ./node_modules/.bin/eslint .
+
   app_wine_front:
     build:
       context: ./app_wine_front

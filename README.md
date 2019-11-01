@@ -58,9 +58,11 @@ To run the tests on the server:
 
 ### Lint
 
-I'm following [Pagar.me JavaScript Style Guide](https://github.com/pagarme/javascript-style-guide) on `app_wine_server`.
+I'm following [Pagar.me JavaScript Style Guide](https://github.com/pagarme/javascript-style-guide) on `app_list_server` and [the respective lint rules for React application](https://github.com/pagarme/react-style-guide) on `app_list_front`.
 
-To run the lint on the server:
+These lint rules are based on the loved Airbnb, but are more still more restrictive.
+
+1 - To run the lint on the server:
 
 🐳 Using Docker
 
@@ -73,6 +75,19 @@ To run the lint on the server:
 ```
 > cd app_wine_server
 > npm run line
+```
+
+2 - To run the lint on the front:
+
+🐳 Using Docker
+```
+> docker-compose run --rm app_wine_front_lint
+```
+
+📜 Without Docker
+```
+> cd app_wine_front
+> npm run lint
 ```
 
 ## Routes
