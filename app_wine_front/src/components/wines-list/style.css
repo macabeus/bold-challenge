@@ -4,3 +4,27 @@
 .cardWine {
   margin-bottom: var(--spacing-small);
 }
+
+.wineInfos {
+
+  & > p {
+    display: flex;
+    align-items: center;
+    margin-top: var(--spacing-tiny);
+    margin-bottom: var(--spacing-tiny);
+  }
+
+  & > p:first-child {
+    margin-top: var(--spacing-small);
+  }
+
+  & strong {
+    display: flex;
+    align-items: center;
+    margin-right: var(--spacing-tiny);
+
+    & svg {
+      margin-right: var(--spacing-tiny);
+    }
+  }
+}
