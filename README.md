@@ -39,6 +39,8 @@ Then, the API will be running at `http://localhost:3000`. You can check if every
 
 Finally, just head to `http://localhost:8080` to see the application running!
 
+If you try to run the front without running the server, you'll see an error message.
+
 ### Tests
 
 I'm using the test runner [AVA](https://github.com/avajs/ava).

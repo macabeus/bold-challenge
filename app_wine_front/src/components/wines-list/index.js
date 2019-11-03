@@ -3,6 +3,7 @@ import { Card, CardContent } from 'former-kit'
 import ApiContext from '../../contexts/api-context'
 import EmptyState from './empty-state'
 import StartingState from './starting-state'
+import ErrorState from './error-state'
 import WineRow from './wine-row'
 import style from './style.css'
 
@@ -11,6 +12,10 @@ const WinesList = () => {
 
   if (winesListState.status === 'starting') {
     return <StartingState />
+  }
+
+  if (winesListState.status === 'error') {
+    return <ErrorState />
   }
 
   if (winesListState.data.length === 0) {

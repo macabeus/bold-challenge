@@ -23,6 +23,25 @@ test('Component WinesList when is still loading data from server', (t) => {
   t.deepEqual(cardWineElements.length, 0)
 })
 
+test('Component WinesList when it fails to load the data from server', (t) => {
+  const { container } = render(
+    <ApiProviderMock
+      winesListState={{
+        data: null,
+        status: 'error',
+      }}
+    >
+      <WinesList />
+    </ApiProviderMock>
+  )
+
+  const alertElements = container.querySelector('div')
+  const cardWineElements = container.querySelectorAll('.cardWine')
+
+  t.deepEqual(alertElements.textContent, 'Error when tried to load the wines data from server!')
+  t.deepEqual(cardWineElements.length, 0)
+})
+
 test('Component WinesList when is empty state', (t) => {
   const { container } = render(
     <ApiProviderMock

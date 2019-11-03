@@ -5,6 +5,7 @@ import { getWines } from '../network/wines'
 
 const useWinesList = () => {
   const winesListStates = {
+    error: data => ({ data, status: 'error' }),
     loaded: data => ({ data, status: 'loaded' }),
     starting: { data: null, status: 'starting' },
   }
@@ -13,11 +14,14 @@ const useWinesList = () => {
 
   useEffect(() => {
     const fetchWines = async () => {
-      const data = await getWines()
+      const [status, data] = await getWines()
 
-      setWinesListState(
-        winesListStates.loaded(data)
-      )
+      if (status === 'ok') {
+        setWinesListState(winesListStates.loaded(data))
+        return
+      }
+
+      setWinesListState(winesListStates.error(data))
     }
 
     fetchWines()
