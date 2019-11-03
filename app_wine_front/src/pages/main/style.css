@@ -5,3 +5,7 @@ body { /* stylelint-disable-line selector-max-type */
   background-color: var(--color-light-platinum-100);
   margin: var(--spacing-small);
 }
+
+.cellsFeatures > div {
+  margin-bottom: var(--spacing-small);
+}

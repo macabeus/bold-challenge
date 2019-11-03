@@ -1,9 +1,16 @@
 import React from 'react'
+import AddWine from '../../components/add-wine'
 import WinesList from '../../components/wines-list'
-import './style.css'
+import style from './style.css'
 
 const Main = () => (
-  <WinesList />
+  <div className={style.cellsFeatures}>
+    <AddWine />
+
+    <div>
+      <WinesList />
+    </div>
+  </div>
 )
 
 export default Main
