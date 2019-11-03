@@ -1,22 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Flexbox } from 'former-kit'
+import { Button, Flexbox } from 'former-kit'
+import ChevronDown from 'emblematic-icons/svg/ChevronDown24.svg'
+import ChevronUp from 'emblematic-icons/svg/ChevronUp24.svg'
 import Price from '../price'
-import style from './style.css'
 
 const AppRow = ({
   name,
   price,
   vineyard,
   year,
-}) => (
-  <Flexbox direction="column">
-    <h1 className={style.wineName}>{name}</h1>
-    <p>Vineyard: {vineyard}</p>
-    <p>Year: {year}</p>
-    <p>Price: <Price cents={price} /></p>
-  </Flexbox>
-)
+}) => {
+  const [isExpand, setIsExpand] = useState(false)
+
+  const buttonIcon = (
+    isExpand
+      ? <ChevronDown height={12} width={12} />
+      : <ChevronUp height={12} width={12} />
+  )
+
+  return (
+    <Flexbox direction="column">
+      <Button
+        icon={buttonIcon}
+        fill="outline"
+        onClick={() => setIsExpand(!isExpand)}
+      >
+        {name}
+      </Button>
+
+      {isExpand && (
+        <>
+          <p>Vineyard: {vineyard}</p>
+          <p>Year: {year}</p>
+          <p>Price: <Price cents={price} /></p>
+        </>
+      )}
+    </Flexbox>
+  )
+}
 
 AppRow.propTypes = {
   name: PropTypes.string.isRequired,

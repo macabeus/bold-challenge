@@ -1,12 +1,6 @@
 @import "former-kit-skin-pagarme/dist/styles/colors/light.css";
 @import "former-kit-skin-pagarme/dist/styles/spacing.css";
 
-.wineName {
-  color: var(--color-light-greenish-150);
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .cardWine {
   margin-bottom: var(--spacing-small);
 }
