@@ -40,7 +40,7 @@ So I decided to use Provider Pattern, that is solution that fit better in this p
 
 ### Tests
 
-I'm using Ava on both projects, because it can run asynchronously the tests ~(bye bye tests that demands state of the previous test!)~. I already used it on production and it fits very well.
+I'm using Ava on both projects, because it can run asynchronously the tests ~(bye bye tests that demands state of the previous test!)~. I already used it on production and it fits very well - but it was my first time using it on the front-end side, and I didn't like to write the `app_wine_front/tests/_init.js` file to work well on the front-end...
 
 On the front-end side, I picked React Testing Library, because it enfores good pratices when you are writing the tests. For example, you can't call the methods or look the internal state of you component. You only can see what the user too can see.
 
