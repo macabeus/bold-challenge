@@ -21,22 +21,21 @@ Despite being a simple app, I made several core decisions:
 
 ### Dockerize the entire application
 
-The main reason why I'm using Docker is to have an easier setup. With that we can ensure that everyone is using the same Node version, and on a real project it's useful to a better maintain. Maybe we would like to add a database, so is easer to do it using Docker, instead of install the database on real machine.<br>
-In short words: that is a simpler setup on a new environment.
+The main reason why I'm using Docker is to have an easier setup. With that we can ensure that everyone is using the same Node version, and on a real project it's useful to a better maintain. For example, maybe we would like to add a database, so is easer to do it using Docker, instead of install the database on real machine.
 
 ### Use a single repo with two projects
 
-Yeah, we could build the entire application on a single big project, but I chose to build two: `app_wine_server` and `app_wine_front`. The first project is responsible for providing an API that the second project uses it to render the web app. We could have `app_list_server` using Koa to provide the static content, but it would result in extra coupling between the front and the back-end - which can become something critical at scale.
+Yeah, we could build the entire application on a single big project, but I chose to build two: `app_wine_server` and `app_wine_front`. The first project is responsible for providing an API that the second project uses it to render the web app. We could have `app_wine_server` using Koa to provide the static content, but it would result in extra coupling between the front and the back-end - which can become something critical at scale.
 
-These two decisions are also handy when deploying: we could write a `Dockerfile` focused to deploy the `app_list_server` project on something like AWS Fargate, and then deploy the `app_list_server` on a static content provider, such as AWS S3.
+These two decisions are also handy when deploying: we could write a `Dockerfile` focused to deploy the `app_wine_server` project on something like AWS Fargate, and then deploy the `app_wine_server` on a static content provider, such as AWS S3.
 
-Since this is a very simple monorepo, with only two projects, I decided to not use [Lerna](https://github.com/lerna/lerna), but on a big application, with more projects, Lerna could help a lot to manage the dependencies between the projects and inside of each project.
+Since this is a very simple monorepo, with only two projects, I decided to not use [Lerna](https://github.com/lerna/lerna), but on a bigger application, with more projects, Lerna could help a lot to manage the dependencies between the projects and inside of each project.
 
 ### Provider Pattern
 
 This application is too simple. We have just one page and few elements with few states to manage, so we don't need to use redux. Please, use a simple approach to a simple problem. [You might not need Redux!](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367) And with React Hooks we have an amazing `useReducer` - that I used one time on this project.
 
-So I decided to use Provider Pattern, that is solution that fit better in this project. And I'm using two providers: `ApiProvider`, to handle the requests to the server, and `DisplayOptionsProvider`, to handle the options to display the wines.
+So I decided to use Provider Pattern, that is a solution that fits better in this project. And I'm using two providers: `ApiProvider`, to handle the requests to the server, and `DisplayOptionsProvider`, to handle the options to display the wines.
 
 ### Tests
 
@@ -46,7 +45,7 @@ On the front-end side, I picked React Testing Library, because it enfores good p
 
 ### Database?
 
-On the back-end side, since the a database isn't a requirement, I decided to only save the datas on a variable. But if a database would a requirement, probably I would like to use a document-based/key-value database (such as DynamoDB), because the datas on our application doesn't have relations, and we have just two very simple operations: list all wines and add a new wine.<br>
+On the back-end side, since the a database isn't a requirement, I decided to only save the datas on a variable. But if a database would be a requirement, probably I would like to use a document-based/key-value database (such as DynamoDB), because the datas on our application doesn't have relations, and we have just two very simple operations: list all wines and add a new wine.<br>
 If we'll use AWS, DynamoDB is a good choice, because we doesn't need to think a lot about the infrastructure about the database [(I have a little application using DynamoDB)](https://github.com/macabeus/hashlab-challenge).
 
 ## Routes
