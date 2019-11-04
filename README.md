@@ -56,3 +56,7 @@ To run the lint on the server:
 > cd app_wine_server
 > npm run line
 ```
+
+## Routes
+
+There are two routes on the server application: `GET /wines` and `POST /wines`.
