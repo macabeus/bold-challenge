@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ApiContext from '../../src/contexts/api-context'
 
-const ApiProviderMock = ({ children, winesListState }) => (
+const ApiProviderMock = ({ addNewWine, children, winesListState }) => (
   <ApiContext.Provider
     value={{
+      addNewWine,
       winesListState,
     }}
   >
@@ -13,6 +14,7 @@ const ApiProviderMock = ({ children, winesListState }) => (
 )
 
 ApiProviderMock.propTypes = {
+  addNewWine: PropTypes.func,
   children: PropTypes.node.isRequired,
   winesListState: PropTypes.shape({
     data: PropTypes.array,
@@ -20,6 +22,7 @@ ApiProviderMock.propTypes = {
 }
 
 ApiProviderMock.defaultProps = {
+  addNewWine: () => {},
   winesListState: {},
 }
 

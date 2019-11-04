@@ -1,17 +1,16 @@
-import React, { useContext } from 'react'
-import ApiContext from '../../contexts/api-context'
-import LoadedWines from './loaded-wines'
-import './style.css'
+import React from 'react'
+import AddWine from '../../components/add-wine'
+import WinesList from '../../components/wines-list'
+import style from './style.css'
 
-const Main = () => {
-  const { winesListState } = useContext(ApiContext)
+const Main = () => (
+  <div className={style.cellsFeatures}>
+    <AddWine />
 
-  const status = {
-    loaded: () => <LoadedWines />,
-    starting: () => <h6>Loading wines...</h6>,
-  }
-
-  return React.createElement(status[winesListState.status])
-}
+    <div>
+      <WinesList />
+    </div>
+  </div>
+)
 
 export default Main
