@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Flexbox } from 'former-kit'
+import Price from '../price'
 import style from './style.css'
 
 const AppRow = ({
@@ -13,7 +14,7 @@ const AppRow = ({
     <h1 className={style.wineName}>{name}</h1>
     <p>Vineyard: {vineyard}</p>
     <p>Year: {year}</p>
-    <p>Price: {price}</p>
+    <p>Price: <Price cents={price} /></p>
   </Flexbox>
 )
 
