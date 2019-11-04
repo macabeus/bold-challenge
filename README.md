@@ -36,7 +36,7 @@ Since this is a very simple monorepo, with only two projects, I decided to not u
 
 This application is too simple. We have just one page and few elements with few states to manage, so we don't need to use redux. Please, use a simple approach to a simple problem. [You might not need Redux!](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367) And with React Hooks we have an amazing `useReducer` - that I used one time on this project.
 
-So I decided to use Provider Pattern, that is solution that fit better in this project. And I'm using two providers: `api-providers`, to handle the requests to the server, and `display-options-provider`, to handle the options to display the wines.
+So I decided to use Provider Pattern, that is solution that fit better in this project. And I'm using two providers: `ApiProvider`, to handle the requests to the server, and `DisplayOptionsProvider`, to handle the options to display the wines.
 
 ### Tests
 
