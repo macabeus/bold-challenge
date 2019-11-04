@@ -43,7 +43,7 @@ Finally, just head to `http://localhost:8080` to see the application running!
 
 I'm using the test runner [AVA](https://github.com/avajs/ava).
 
-To run the tests on the server:
+1 - To run the tests on the server:
 
 🐳 Using Docker
 ```
@@ -53,6 +53,21 @@ To run the tests on the server:
 📜 Without Docker
 ```
 > cd app_wine_server
+> npm run test
+```
+
+2 - To run the tests on the front:
+
+🐳 Using Docker
+
+```
+> docker-compose run --rm app_wine_front_tests
+```
+
+📜 Without Docker
+
+```
+> cd app_wine_front
 > npm run test
 ```
 
