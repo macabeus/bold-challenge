@@ -1,0 +1,36 @@
+{
+  "name": "app_wine_server",
+  "version": "0.0.1",
+  "description": "App wine server for the BOLD challenge application",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:macabeus/bold-challenge.git"
+  },
+  "scripts": {
+    "start": "./node_modules/nodemon/bin/nodemon.js -w ./ ./src/index.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "./node_modules/.bin/ava"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "koa": "2.10.0",
+    "koa-router": "7.4.0"
+  },
+  "devDependencies": {
+    "ava": "2.4.0",
+    "eslint": "6.5.1",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-config-pagarme-base": "3.0.0",
+    "nodemon": "1.19.4"
+  },
+  "ava": {
+    "files": [
+      "tests/**/*"
+    ],
+    "helpers": [
+      "tests/helpers/**/*"
+    ]
+  },
+  "author": "macabeus",
+  "license": "MIT"
+}
