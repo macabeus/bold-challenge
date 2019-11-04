@@ -2,6 +2,7 @@ version: '3.7'
 
 volumes:
   node_modules_server:
+  node_modules_front:
 
 services:
   app_wine_server:
@@ -29,3 +30,21 @@ services:
       - node_modules_server:/app/node_modules
       - ./app_wine_server:/app
     command: ./node_modules/.bin/ava
+
+  app_wine_front_lint:
+    build:
+      context: ./app_wine_front
+    volumes:
+      - node_modules_front:/app/node_modules
+      - ./app_wine_front:/app
+    command: ./node_modules/.bin/eslint .
+
+  app_wine_front:
+    build:
+      context: ./app_wine_front
+    volumes:
+      - node_modules_front:/app/node_modules
+      - ./app_wine_front:/app
+    command: ./node_modules/.bin/webpack-dev-server --mode development --open --config config/webpack.config.js --host 0.0.0.0 --watch-aggregate-timeout 500 --watch-poll 1000
+    ports:
+      - 8080:8080
