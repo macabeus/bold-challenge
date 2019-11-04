@@ -4,11 +4,13 @@ import DisplayOptionsContext from '../contexts/display-options-context'
 
 const DisplayOptionsProvider = ({
   children,
+  filterByText: defaultFilterByText,
   orderBy: defaultOrderBy,
   sortBy: defaultSortBy,
 }) => {
   const [orderBy, setOrderBy] = useState(defaultOrderBy)
   const [sortBy, setSortBy] = useState(defaultSortBy)
+  const [filterByText, setFilterByText] = useState(defaultFilterByText)
 
   const sortFunc = {
     asc: {
@@ -37,10 +39,20 @@ const DisplayOptionsProvider = ({
     },
   }
 
+  const filterFunc = wine => (
+    wine.name.toLocaleUpperCase().includes(filterByText.toLocaleUpperCase())
+    || wine.vineyard.toLocaleUpperCase().includes(
+      filterByText.toLocaleUpperCase()
+    )
+  )
+
   return (
     <DisplayOptionsContext.Provider
       value={{
+        filterByText,
+        filterFunc,
         orderBy,
+        setFilterByText,
         setOrderBy,
         setSortBy,
         sortBy,
@@ -54,11 +66,13 @@ const DisplayOptionsProvider = ({
 
 DisplayOptionsProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  filterByText: PropTypes.string,
   orderBy: PropTypes.string,
   sortBy: PropTypes.string,
 }
 
 DisplayOptionsProvider.defaultProps = {
+  filterByText: '',
   orderBy: 'asc',
   sortBy: 'name',
 }

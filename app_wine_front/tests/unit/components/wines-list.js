@@ -184,3 +184,42 @@ test('Component WinesList when is sorting by vineyard desc', (t) => {
   t.deepEqual(winesNameElements[1].textContent, 'should be the second')
   t.deepEqual(winesNameElements[2].textContent, 'should be the last')
 })
+
+test('Component WinesList when is filtering', (t) => {
+  const winesDataMock = [
+    {
+      name: 'cheap wine from portugal',
+      price: 100,
+      vineyard: 'lisboa',
+      year: 2019,
+    },
+    {
+      name: 'expensive wine from portugal',
+      price: 500000,
+      vineyard: 'porto',
+      year: 2019,
+    },
+    {
+      name: 'wine from uk',
+      price: 3232,
+      vineyard: 'london',
+      year: 2019,
+    },
+  ]
+
+  const { container } = render(
+    <ApiProviderMock
+      winesListState={{
+        data: winesDataMock,
+        status: 'loaded',
+      }}
+    >
+      <DisplayOptionsProvider filterByText="portugal">
+        <WinesList />
+      </DisplayOptionsProvider>
+    </ApiProviderMock>
+  )
+
+  const cardWineElements = container.querySelectorAll('.cardWine')
+  t.deepEqual(cardWineElements.length, 2)
+})

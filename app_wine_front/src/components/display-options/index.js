@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   CardTitle,
+  FormInput,
   RadioGroup,
 } from 'former-kit'
 import DisplayOptionsContext from '../../contexts/display-options-context'
@@ -39,7 +40,9 @@ const orderByOptions = [
 
 const DisplayOptions = () => {
   const {
+    filterByText,
     orderBy,
+    setFilterByText,
     setOrderBy,
     setSortBy,
     sortBy,
@@ -52,6 +55,8 @@ const DisplayOptions = () => {
     <Card>
       <CardTitle title="Display options" />
       <CardContent>
+        <p>Sort options:</p>
+
         <RadioGroup
           options={sortByOptions}
           name="sortByOptions"
@@ -64,6 +69,15 @@ const DisplayOptions = () => {
           name="orderByOptions"
           onChange={onChangeOrderByHandle}
           value={orderBy}
+        />
+
+        <p>Filter</p>
+
+        <FormInput
+          type="text"
+          label="Show only if contains..."
+          onChange={e => setFilterByText(e.target.value)}
+          value={filterByText}
         />
       </CardContent>
     </Card>

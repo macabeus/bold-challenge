@@ -10,7 +10,7 @@ import style from './style.css'
 
 const WinesList = () => {
   const { winesListState } = useContext(ApiContext)
-  const { sortFunc } = useContext(DisplayOptionsContext)
+  const { filterFunc, sortFunc } = useContext(DisplayOptionsContext)
 
   if (winesListState.status === 'starting') {
     return <StartingState />
@@ -20,12 +20,15 @@ const WinesList = () => {
     return <ErrorState />
   }
 
-  if (winesListState.data.length === 0) {
+  const wines = winesListState.data
+    .filter(filterFunc)
+    .sort(sortFunc)
+
+  if (wines.length === 0) {
     return <EmptyState />
   }
 
-  const wines = winesListState.data
-    .sort(sortFunc)
+  const winesRows = wines
     .map(wine => (
       <Card key={wine.name} className={style.cardWine}>
         <CardContent>
@@ -39,7 +42,7 @@ const WinesList = () => {
       </Card>
     ))
 
-  return wines
+  return winesRows
 }
 
 export default WinesList
